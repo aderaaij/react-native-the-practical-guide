@@ -35,9 +35,8 @@ var PlaceInput = /** @class */ (function (_super) {
             });
         };
         _this.placeSubmitHandler = function () {
-            if (_this.state.placeName.trim() === '') {
+            if (_this.state.placeName.trim() === '')
                 return;
-            }
             _this.props.onPlaceAdded(_this.state.placeName);
             _this.setState({ placeName: '' });
         };
@@ -46,8 +45,8 @@ var PlaceInput = /** @class */ (function (_super) {
     PlaceInput.prototype.render = function () {
         return (<>
         <PlaceInputContainer>
-          <PlaceInputBox placeholder="Insert a place name" value={this.state.placeName} onChangeText={this.placeNameChangeHandler}/>
-          <SubmitButton onPress={this.placeSubmitHandler} title="send"/>
+          <PlaceInputBox placeholder="Insert your fav place name" value={this.state.placeName} onChangeText={this.placeNameChangeHandler}/>
+          <SubmitButton onPress={this.placeSubmitHandler} title="Submit it!"/>
         </PlaceInputContainer>
       </>);
     };

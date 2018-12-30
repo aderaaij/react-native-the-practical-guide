@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "tsc": "tsc"
+    "tsc": "tsc --watch \"**/*.tsx\" --jsx react-native",
+    "ts": "tsc --watch --jsx react-native"
   },
   "dependencies": {
     "@types/styled-components": "^4.1.4",
@@ -22,6 +23,7 @@
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.51.1",
     "react-test-renderer": "16.6.3",
+    "ts-node": "^7.0.1",
     "typescript": "3.2.2"
   },
   "jest": {

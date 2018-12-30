@@ -31,9 +31,7 @@ export default class PlaceInput extends React.Component<PlaceInputProps, any> {
     });
   };
   placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === '') {
-      return;
-    }
+    if (this.state.placeName.trim() === '') return;
     this.props.onPlaceAdded(this.state.placeName);
     this.setState({ placeName: '' });
   };
@@ -42,11 +40,11 @@ export default class PlaceInput extends React.Component<PlaceInputProps, any> {
       <>
         <PlaceInputContainer>
           <PlaceInputBox
-            placeholder="Insert a place name"
+            placeholder="Insert your fav place name"
             value={this.state.placeName}
             onChangeText={this.placeNameChangeHandler}
           />
-          <SubmitButton onPress={this.placeSubmitHandler} title="send" />
+          <SubmitButton onPress={this.placeSubmitHandler} title="Submit it!" />
         </PlaceInputContainer>
       </>
     );
