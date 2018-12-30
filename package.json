@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "tsc": "tsc --watch \"**/*.tsx\" --jsx react-native",
-    "ts": "tsc --watch --jsx react-native"
+    "tsc": "tsc"
   },
   "dependencies": {
     "@types/styled-components": "^4.1.4",
