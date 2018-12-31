@@ -35,16 +35,25 @@ export default class App extends React.Component<Props, State> {
   placeAddedHandler = (placeName: string) => {
     this.setState((prevState: State) => {
       return {
-        places: prevState.places.concat(placeName)
+        places: prevState.places.concat({
+          key: Math.random(),
+          value: placeName
+        })
       };
     });
     this.setState({ placeName: '' });
+  };
+
+  placeDeletedHandler = (key: number) => {
+    this.setState(prevState => ({
+      places: prevState.places.filter(place => place.key !== key)
+    }));
   };
   public render() {
     return (
       <AppContainer>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-        <PlaceList places={this.state.places} />
+        <PlaceList onItemDeleted={this.placeDeletedHandler} places={this.state.places} />
       </AppContainer>
     );
   }
