@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
-// import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
+import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
 
 const AppContainer = styled.View`
   display: flex;
@@ -15,45 +15,70 @@ const AppContainer = styled.View`
 `;
 
 interface State {
+  places: Array<Place>;
+  selectedPlace: Place;
+}
+
+interface Place {
+  key: string;
   placeName: string;
-  places: Array<string>;
+  placeImage: {
+    uri: string;
+  };
 }
 
 interface Props {}
-export default class App extends React.Component<Props, State> {
+export default class App extends React.Component<Props, any> {
   state = {
-    placeName: '',
-    places: []
-  };
-
-  placeNameChangeHandler = (val: string) => {
-    this.setState({
-      placeName: val
-    });
+    places: [],
+    selectedPlace: null
   };
 
   placeAddedHandler = (placeName: string) => {
     this.setState((prevState: State) => {
       return {
         places: prevState.places.concat({
-          key: Math.random(),
-          value: placeName
+          key: Math.random().toString(),
+          placeName,
+          placeImage: {
+            uri:
+              'https://cdn.shopify.com/s/files/1/1469/6476/files/Popoyo-Nicaragua_1024x1024.jpg?v=1518142200'
+          }
         })
       };
     });
     this.setState({ placeName: '' });
   };
 
-  placeDeletedHandler = (key: number) => {
-    this.setState(prevState => ({
-      places: prevState.places.filter(place => place.key !== key)
+  placeSelectedHandler = (key: number) => {
+    this.setState((prevState: State) => ({
+      selectedPlace: prevState.places.find((place: Place) => place.key === key)
     }));
+  };
+  placeDeletedHandler = (key: number) => {
+    this.setState((prevState: State) => ({
+      places:
+        prevState.selectedPlace !== null
+          ? prevState.places.filter((place: Place) => place.key !== prevState.selectedPlace.key)
+          : prevState.places
+    }));
+    this.modalClosedHandler();
+  };
+  modalClosedHandler = () => {
+    this.setState({
+      selectedPlace: null
+    });
   };
   public render() {
     return (
       <AppContainer>
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />
-        <PlaceList onItemDeleted={this.placeDeletedHandler} places={this.state.places} />
+        <PlaceList onItemSelected={this.placeSelectedHandler} places={this.state.places} />
+        <PlaceDetail
+          selectedPlace={this.state.selectedPlace}
+          onItemDeleted={this.placeDeletedHandler}
+          onModalClosed={this.modalClosedHandler}
+        />
       </AppContainer>
     );
   }
