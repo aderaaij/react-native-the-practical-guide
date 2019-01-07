@@ -17,23 +17,23 @@ const SubmitButton = styled.Button`
 `;
 
 interface PlaceInputProps {
-  placeName: string;
+  name: string;
   onPlaceAdded: (arg: string) => string;
 }
 
 export default class PlaceInput extends React.Component<PlaceInputProps, any> {
   state = {
-    placeName: ''
+    name: ''
   };
   placeNameChangeHandler = (val: string) => {
     this.setState({
-      placeName: val
+      name: val
     });
   };
   placeSubmitHandler = () => {
-    if (this.state.placeName.trim() === '') return;
-    this.props.onPlaceAdded(this.state.placeName);
-    this.setState({ placeName: '' });
+    if (this.state.name.trim() === '') return;
+    this.props.onPlaceAdded(this.state.name);
+    this.setState({ name: '' });
   };
   public render() {
     return (
@@ -41,7 +41,7 @@ export default class PlaceInput extends React.Component<PlaceInputProps, any> {
         <PlaceInputContainer>
           <PlaceInputBox
             placeholder="Insert your fav place name"
-            value={this.state.placeName}
+            value={this.state.name}
             onChangeText={this.placeNameChangeHandler}
           />
           <SubmitButton onPress={this.placeSubmitHandler} title="Submit it!" />

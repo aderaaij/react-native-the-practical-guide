@@ -1,36 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 import ListItem from '../ListItem/ListItem';
-import { FlatList, Text } from 'react-native';
-import { string } from 'prop-types';
 
 const PlaceListContainer = styled.FlatList`
   width: 100%;
 `;
 
 interface PlaceObject {
-  value: string;
+  name: string;
+  image: object;
   key: number;
 }
 interface PlaceListProps {
   places: Array<PlaceObject>;
-  onItemDeleted: (arg: number) => string;
+  onItemSelected: (arg: number) => string;
 }
 
-interface InfoProps {
-  index: number;
-  item: PlaceObject;
-}
-
-const PlaceList: React.SFC<PlaceListProps> = props => {
+const PlaceList: React.SFC<PlaceListProps> = ({ places, onItemSelected }) => {
   return (
-    <PlaceListContainer<InfoProps>
-      data={props.places}
-      renderItem={(info: InfoProps) => (
+    <PlaceListContainer
+      data={places}
+      renderItem={({ index, item }) => (
         <ListItem
-          index={info.index}
-          placeName={info.item.value}
-          onItemPressed={() => props.onItemDeleted(info.item.key)}
+          index={index}
+          name={item.placeName}
+          image={item.placeImage}
+          onItemPressed={() => onItemSelected(item.key)}
         />
       )}
     />
