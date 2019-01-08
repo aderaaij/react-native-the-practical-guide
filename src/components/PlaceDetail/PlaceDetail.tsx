@@ -24,8 +24,8 @@ const FeaturedImage = styled.Image`
 
 interface Props {
   selectedPlace: {
-    placeName: string;
-    placeImage: object;
+    name: string;
+    image: object;
   };
 }
 
@@ -34,8 +34,8 @@ const PlaceDetail: React.SFC<Props> = ({ selectedPlace, onItemDeleted, onModalCl
   if (selectedPlace) {
     modalContent = (
       <>
-        <FeaturedImage source={selectedPlace.placeImage} />
-        <TitleText>{selectedPlace.placeName}</TitleText>
+        <FeaturedImage source={selectedPlace.image} />
+        <TitleText>{selectedPlace.name}</TitleText>
       </>
     );
   }

@@ -23,8 +23,8 @@ const PlaceList: React.SFC<PlaceListProps> = ({ places, onItemSelected }) => {
       renderItem={({ index, item }) => (
         <ListItem
           index={index}
-          name={item.placeName}
-          image={item.placeImage}
+          name={item.name}
+          image={item.image}
           onItemPressed={() => onItemSelected(item.key)}
         />
       )}

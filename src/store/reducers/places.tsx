@@ -1,19 +1,25 @@
 import { Action } from 'redux';
+import { Reducer } from 'redux';
+
 import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from '../actions/actionTypes';
-interface Place {
+type Place = {
   key: string;
   name: string;
   image: {
     uri: string;
   };
-}
+};
 
-interface LocationsState {
+type LocationsState = {
   places: ReadonlyArray<Place>;
   selectedPlace: Place | null | undefined;
-}
+};
+const initialState: LocationsState = {
+  places: [],
+  selectedPlace: null
+};
 
-const reducer = (state: LocationsState, action): LocationsState => {
+const reducer: Reducer<LocationsState> = (state = initialState, action) => {
   switch (action.type) {
     case ADD_PLACE:
       return {
@@ -49,5 +55,7 @@ const reducer = (state: LocationsState, action): LocationsState => {
       return state;
   }
 };
+
+console.log(reducer);
 
 export default reducer;
