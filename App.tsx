@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
+import { connect } from 'react-redux';
 
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
@@ -28,7 +29,7 @@ interface Place {
 }
 
 interface Props {}
-export default class App extends React.Component<Props, any> {
+class App extends React.Component<Props, any> {
   state = {
     places: [],
     selectedPlace: null
@@ -83,3 +84,12 @@ export default class App extends React.Component<Props, any> {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  places: state.places.places,
+  selectedPlace: state.places.selectedPlace
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect()(App);
