@@ -20,7 +20,7 @@ interface PlaceInputProps {
   name: string;
   onPlaceAdded: (arg: string) => string;
 }
-
+console.log('something within PlaceINput');
 export default class PlaceInput extends React.Component<PlaceInputProps, any> {
   state = {
     name: ''
