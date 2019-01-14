@@ -1,74 +1,75 @@
 import { Navigation } from 'react-native-navigation';
 import AuthScreen from './src/screens/auth/Auth';
+import { View, Text } from 'react-native';
 // Register Screens
 Navigation.registerComponent('awesome-places.AuthScreen', () => AuthScreen);
 
 // Start the app
-Navigation.setRoot({
-  root: {
-    bottomTabs: {
-      children: [
-        {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: 'awesome-places.AuthScreen',
-                  passProps: {
-                    text: 'This is tab 1'
-                  }
-                }
-              }
-            ],
-            options: {
-              bottomTab: {
-                text: 'Tab 1',
-                // icon: require('../images/one.png'),
-                testID: 'FIRST_TAB_BAR_BUTTON'
-              }
-            }
-          }
-        }
-      ]
-    }
-  }
-});
+// Navigation.setRoot({
+//   root: {
+//     bottomTabs: {
+//       children: [
+//         {
+//           stack: {
+//             children: [
+//               {
+//                 component: {
+//                   name: 'awesome-places.AuthScreen',
+//                   passProps: {
+//                     text: 'This is tab 1'
+//                   }
+//                 }
+//               }
+//             ],
+//             options: {
+//               bottomTab: {
+//                 text: 'Tab 1',
+//                 // icon: require('../images/one.png'),
+//                 testID: 'FIRST_TAB_BAR_BUTTON'
+//               }
+//             }
+//           }
+//         }
+//       ]
+//     }
+//   }
+// });
 
-// import * as React from 'react';
-// import styled from 'styled-components/native';
-// import { connect } from 'react-redux';
+import * as React from 'react';
+import styled from 'styled-components/native';
+import { connect } from 'react-redux';
 
-// import PlaceInput from './src/components/PlaceInput/PlaceInput';
-// import PlaceList from './src/components/PlaceList/PlaceList';
-// import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
-// import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
+import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
+import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions';
 
-// const AppContainer = styled.View`
-//   display: flex;
-//   flex: 1;
-//   padding: 30px 10px 0 10px;
-//   justify-content: flex-start;
-//   align-items: center;
-//   background-color: #fff;
-// `;
+const AppContainer = styled.View`
+  display: flex;
+  flex: 1;
+  padding: 30px 10px 0 10px;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+`;
 
-// interface State {
-//   places: Array<Place>;
-//   selectedPlace: Place;
-// }
+interface State {
+  places: Array<Place>;
+  selectedPlace: Place;
+}
 
-// const state = {
-//   places: [],
-//   selectedPlace: {}
-// };
+const state = {
+  places: [],
+  selectedPlace: {}
+};
 
-// interface Place {
-//   key: string;
-//   placeName: string;
-//   placeImage: {
-//     uri: string;
-//   };
-// }
+interface Place {
+  key: string;
+  placeName: string;
+  placeImage: {
+    uri: string;
+  };
+}
 
 // // interface Props {}
 // class App extends React.Component<any> {
@@ -117,3 +118,15 @@ Navigation.setRoot({
 //   mapStateToProps,
 //   mapDispatchToProps
 // )(App);
+
+// import React, { Component } from 'react'
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <View>
+        <Text>Text</Text>
+      </View>
+    );
+  }
+}
