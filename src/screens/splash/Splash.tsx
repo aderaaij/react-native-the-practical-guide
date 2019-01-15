@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { View, Text } from 'react-native';
 
-export default class SplashScreen extends Component {
+export default class SplashScreen extends React.Component {
   render() {
     return (
       <View>

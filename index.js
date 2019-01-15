@@ -16,14 +16,14 @@ import App from './App';
 // AppRegistry.registerComponent(appName, () => RNRedux);
 // AppRegistry.registerComponent(appName, () => RNRedux);
 
-Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App);
+// Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App);
 
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: 'navigation.playground.WelcomeScreen'
-      }
-    }
-  });
-});
+// Navigation.events().registerAppLaunchedListener(() => {
+//   Navigation.setRoot({
+//     root: {
+//       component: {
+//         name: 'navigation.playground.WelcomeScreen'
+//       }
+//     }
+//   });
+// });
