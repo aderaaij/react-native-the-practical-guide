@@ -1,7 +1,8 @@
 import { Action } from 'redux';
 import { Reducer } from 'redux';
 
-import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from '../actions/actionTypes';
+import { ADD_PLACE, DELETE_PLACE } from '../actions/actionTypes';
+
 type Place = {
   key: string;
   name: string;
@@ -14,6 +15,7 @@ type LocationsState = {
   places: ReadonlyArray<Place>;
   selectedPlace: Place | null | undefined;
 };
+
 const initialState: LocationsState = {
   places: [],
   selectedPlace: null
@@ -37,18 +39,8 @@ const reducer: Reducer<LocationsState> = (state = initialState, action) => {
       return {
         ...state,
         places: state.places.filter(place =>
-          state.selectedPlace ? place.key !== state.selectedPlace.key : place
+          state.selectedPlace ? place.key !== action.placekey : place
         ),
-        selectedPlace: null
-      };
-    case SELECT_PLACE:
-      return {
-        ...state,
-        selectedPlace: state.places.find(place => place.key === action.placeKey)
-      };
-    case DESELECT_PLACE:
-      return {
-        ...state,
         selectedPlace: null
       };
     default:
