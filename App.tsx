@@ -19,6 +19,7 @@ Navigation.events().registerAppLaunchedListener(() => {
               name: 'awesome-places.AuthScreen',
               options: {
                 topBar: {
+                  visible: true,
                   title: {
                     text: 'Login'
                   }
