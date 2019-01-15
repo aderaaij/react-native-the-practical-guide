@@ -2,10 +2,9 @@ import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const myTabNavigation = async () => {
-  const icons = await Promise.all([
-    Icon.getImageSource('md-map', 30),
-    Icon.getImageSource('md-share-alt', 30)
-  ]);
+  const mapIcon = await Icon.getImageSource('md-map', 30);
+  const shareIcon = await Icon.getImageSource('md-share-alt', 30);
+
   Navigation.setRoot({
     root: {
       bottomTabs: {
@@ -13,33 +12,7 @@ const myTabNavigation = async () => {
         children: [
           {
             stack: {
-              id: 'Tabs',
-              children: [
-                {
-                  component: {
-                    id: 'sharescreen',
-                    name: 'awesome-places.SharePlaceScreen',
-                    options: {
-                      topBar: {
-                        visible: true,
-                        title: {
-                          text: 'Share Place'
-                        }
-                      },
-                      bottomTab: {
-                        fontSize: 12,
-                        text: 'Share Place',
-                        icon: icons[0]
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          {
-            stack: {
-              id: 'Tabs2',
+              id: 'Tabs1',
               children: [
                 {
                   component: {
@@ -55,7 +28,33 @@ const myTabNavigation = async () => {
                       bottomTab: {
                         fontSize: 12,
                         text: 'Find Place',
-                        icon: icons[1]
+                        icon: mapIcon
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            stack: {
+              id: 'Tabs2',
+              children: [
+                {
+                  component: {
+                    id: 'sharescreen',
+                    name: 'awesome-places.SharePlaceScreen',
+                    options: {
+                      topBar: {
+                        visible: true,
+                        title: {
+                          text: 'Share Place'
+                        }
+                      },
+                      bottomTab: {
+                        fontSize: 12,
+                        text: 'Share Place',
+                        icon: shareIcon
                       }
                     }
                   }
