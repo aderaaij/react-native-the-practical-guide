@@ -1,23 +1,42 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Button, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import PlaceList from '../../components/PlaceList/PlaceList';
 
+type Place = {
+  key: number;
+  name: string;
+  image: {
+    uri: string;
+  };
+};
+
 class FindPlaceScreen extends React.Component {
-  itemSelectedHandler = key => {
+  itemSelectedHandler = (key: number) => {
     Navigation.push(this.props.componentId, {
       component: {
         name: 'awesome-places.PlaceDetailScreen',
         passProps: {
-          selectedPlace: this.props.places.find(item => item.key === key)
+          selectedPlace: this.props.places.find((item: Place) => item.key === key)
         },
         options: {
           topBar: {
             title: {
-              text: this.props.places.find(item => item.key === key).name
+              text: this.props.places.find((item: Place) => item.key === key).name
             }
           }
+        }
+      }
+    });
+  };
+  openSideMenu = () => {
+    console.log('open it');
+    Navigation.mergeOptions(this.props.componentId, {
+      sideMenu: {
+        left: {
+          visible: true,
+          enabled: true
         }
       }
     });
@@ -26,6 +45,7 @@ class FindPlaceScreen extends React.Component {
     return (
       <View>
         <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />
+        <Button title="SideMenu" onPress={this.openSideMenu} />
       </View>
     );
   }

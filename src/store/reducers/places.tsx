@@ -13,12 +13,10 @@ type Place = {
 
 type LocationsState = {
   places: ReadonlyArray<Place>;
-  selectedPlace: Place | null | undefined;
 };
 
 const initialState: LocationsState = {
-  places: [],
-  selectedPlace: null
+  places: []
 };
 
 const reducer: Reducer<LocationsState> = (state = initialState, action) => {
@@ -38,10 +36,7 @@ const reducer: Reducer<LocationsState> = (state = initialState, action) => {
     case DELETE_PLACE:
       return {
         ...state,
-        places: state.places.filter(place =>
-          state.selectedPlace ? place.key !== action.placekey : place
-        ),
-        selectedPlace: null
+        places: state.places.filter(place => place.key !== action.placeKey)
       };
     default:
       return state;
