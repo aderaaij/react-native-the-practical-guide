@@ -7,7 +7,7 @@ interface ListItemProps {
   image: string;
   index: number;
   oddEven?: string;
-  onItemPressed: () => string;
+  onItemPressed: () => void;
 }
 
 const Thumbnail = styled(Image)`
