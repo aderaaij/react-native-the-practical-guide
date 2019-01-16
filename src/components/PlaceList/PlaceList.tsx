@@ -1,8 +1,9 @@
 import * as React from 'react';
-import styled from 'styled-components/native';
+import { FlatList } from 'react-native';
+import styled from 'styled-components';
 import ListItem from '../ListItem/ListItem';
 
-const PlaceListContainer = styled.FlatList`
+const PlaceListContainer = styled(FlatList)`
   width: 100%;
 `;
 
@@ -20,7 +21,7 @@ const PlaceList: React.SFC<PlaceListProps> = ({ places, onItemSelected }) => {
   return (
     <PlaceListContainer
       data={places}
-      renderItem={({ index, item }) => (
+      renderItem={({ index, item }: { index: number; item: any }) => (
         <ListItem
           index={index}
           name={item.name}

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components/native';
-import { Text, TouchableOpacity, Image } from 'react-native';
+import styled from 'styled-components';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 interface ListItemProps {
   name: string;
@@ -10,13 +10,13 @@ interface ListItemProps {
   onItemPressed: () => string;
 }
 
-const Thumbnail = styled.Image`
+const Thumbnail = styled(Image)`
   width: 30px;
   height: 30px;
   margin-right: 8px;
 `;
 
-const ListItemWrap = styled.View`
+const ListItemWrap = styled(View)`
   width: 100%;
   background: ${(props: ListItemProps) => (props.oddEven === 'even' ? '#ec008c' : '#fff')};
   text-align: left;

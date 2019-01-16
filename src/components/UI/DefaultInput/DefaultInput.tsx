@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { TextInput } from 'react-native';
 
 interface DefaultInputProps {
-  placeholder: string;
+  placeholder?: string;
   secureTextEntry?: boolean;
+  value?: string;
+  onChangeText?: (val: string) => void;
 }
 
 const Input = styled(TextInput)`
