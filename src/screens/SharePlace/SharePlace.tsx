@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { Text, View } from 'react-native';
+import { Text, View, TabBarIOSItem } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 import { addPlace } from '../../store/actions/index';
@@ -8,27 +8,21 @@ import { addPlace } from '../../store/actions/index';
 import PlaceInput from '../../components/PlaceInput/PlaceInput';
 
 class SharePlaceScreen extends React.Component<any> {
-  // constructor(props: any) {
-  //   super(props);
-  //   this.isSideDrawerVisible = false;
-  //   Navigation.events().bindComponent(this);
-  //   console.log(Navigation);
-  // }
-  // navigationButtonPressed(event: { buttonId: string; componentId: string }) {
-  //   console.log(event);
-  //   if (event.buttonId === 'sideDrawerToggle') {
-  //     !this.isSideDrawerVisible
-  //       ? (this.isSideDrawerVisible = true)
-  //       : (this.isSideDrawerVisible = false);
-  //     Navigation.mergeOptions(this.props.componentId, {
-  //       sideMenu: {
-  //         left: {
-  //           visible: this.isSideDrawerVisible
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
+  constructor(props: any) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
+  navigationButtonPressed(event: { buttonId: string; componentId: string }) {
+    if (event.buttonId === 'sideDrawerToggle') {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: !this.props.isDrawerOpen
+          }
+        }
+      });
+    }
+  }
   placeAddedHandler = (placeName: string) => {
     this.props.onAddPlace(placeName);
   };
@@ -40,13 +34,16 @@ class SharePlaceScreen extends React.Component<any> {
     );
   }
 }
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    onAddPlace: (placeName: string) => dispatch(addPlace(placeName))
-  };
-};
+
+const mapStateToProps = ({ ui }) => ({
+  isDrawerOpen: ui.isDrawerOpen
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onAddPlace: (placeName: string) => dispatch(addPlace(placeName))
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SharePlaceScreen);

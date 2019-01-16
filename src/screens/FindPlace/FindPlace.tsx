@@ -30,22 +30,10 @@ class FindPlaceScreen extends React.Component {
       }
     });
   };
-  openSideMenu = () => {
-    console.log('open it');
-    Navigation.mergeOptions(this.props.componentId, {
-      sideMenu: {
-        left: {
-          visible: true,
-          enabled: true
-        }
-      }
-    });
-  };
   render() {
     return (
       <View>
         <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />
-        <Button title="SideMenu" onPress={this.openSideMenu} />
       </View>
     );
   }

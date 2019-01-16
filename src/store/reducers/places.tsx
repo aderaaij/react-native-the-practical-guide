@@ -43,6 +43,4 @@ const reducer: Reducer<LocationsState> = (state = initialState, action) => {
   }
 };
 
-console.log(reducer);
-
 export default reducer;
