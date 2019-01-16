@@ -13,6 +13,10 @@ type Place = {
 };
 
 class FindPlaceScreen extends React.Component {
+  constructor(props: any) {
+    super(props);
+    Navigation.events().bindComponent(this);
+  }
   itemSelectedHandler = (key: number) => {
     Navigation.push(this.props.componentId, {
       component: {
@@ -30,6 +34,17 @@ class FindPlaceScreen extends React.Component {
       }
     });
   };
+  navigationButtonPressed(event: { buttonId: string; componentId: string }) {
+    if (event.buttonId === 'sideDrawerToggle') {
+      Navigation.mergeOptions(this.props.componentId, {
+        sideMenu: {
+          left: {
+            visible: !this.props.isDrawerOpen
+          }
+        }
+      });
+    }
+  }
   render() {
     return (
       <View>
@@ -39,9 +54,10 @@ class FindPlaceScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ places, ui }) => {
   return {
-    places: state.places.places
+    places: places.places,
+    isDrawerOpen: ui.isDrawerOpen
   };
 };
 export default connect(mapStateToProps)(FindPlaceScreen);
