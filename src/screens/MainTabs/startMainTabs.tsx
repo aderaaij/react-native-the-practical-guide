@@ -14,77 +14,87 @@ const myTabNavigation = async () => {
       }
     ]
   };
-  Navigation.setRoot({
-    root: {
-      sideMenu: {
-        left: {
-          component: {
-            name: 'awesome-places.SideDrawer'
-          }
-        },
-        center: {
-          bottomTabs: {
-            id: 'BottomTabsId',
+
+  const sideDrawer = {
+    component: {
+      name: 'awesome-places.SideDrawer'
+    }
+  };
+
+  const mainStack = {
+    bottomTabs: {
+      id: 'BottomTabsId',
+      children: [
+        {
+          stack: {
+            id: 'Tabs1',
             children: [
               {
-                stack: {
-                  id: 'Tabs1',
-                  children: [
-                    {
-                      component: {
-                        id: 'findscreen',
-                        name: 'awesome-places.FindPlaceScreen',
-                        options: {
-                          topBar: {
-                            visible: true,
-                            ...menuToggle,
-                            title: {
-                              text: 'Find Place'
-                            }
-                          },
-                          bottomTab: {
-                            fontSize: 12,
-                            text: 'Find Place',
-                            icon: mapIcon
-                          }
-                        }
+                component: {
+                  id: 'FindPlaceScreen',
+                  name: 'awesome-places.FindPlaceScreen',
+                  options: {
+                    topBar: {
+                      visible: true,
+                      ...menuToggle,
+                      title: {
+                        text: 'Find Place'
                       }
+                    },
+                    bottomTab: {
+                      fontSize: 12,
+                      text: 'Find Place',
+                      icon: mapIcon
                     }
-                  ]
+                  }
                 }
-              },
+              }
+            ]
+          }
+        },
+        {
+          stack: {
+            id: 'Tabs2',
+            children: [
               {
-                stack: {
-                  id: 'Tabs2',
-                  children: [
-                    {
-                      component: {
-                        id: 'sharescreen',
-                        name: 'awesome-places.SharePlaceScreen',
-                        options: {
-                          topBar: {
-                            visible: true,
-                            ...menuToggle,
-                            title: {
-                              text: 'Share Place'
-                            }
-                          },
-                          bottomTab: {
-                            fontSize: 12,
-                            text: 'Share Place',
-                            icon: shareIcon
-                          }
-                        }
+                component: {
+                  id: 'SharePlaceScreen',
+                  name: 'awesome-places.SharePlaceScreen',
+                  options: {
+                    topBar: {
+                      visible: true,
+                      ...menuToggle,
+                      title: {
+                        text: 'Share Place'
                       }
+                    },
+                    bottomTab: {
+                      fontSize: 12,
+                      text: 'Share Place',
+                      icon: shareIcon
                     }
-                  ]
+                  }
                 }
               }
             ]
           }
         }
+      ]
+    }
+  };
+
+  Navigation.setRoot({
+    root: {
+      sideMenu: {
+        left: {
+          ...sideDrawer
+        },
+        center: {
+          ...mainStack
+        }
       }
     }
   });
 };
+
 export default myTabNavigation;
