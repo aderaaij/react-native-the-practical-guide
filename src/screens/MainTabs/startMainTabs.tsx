@@ -5,7 +5,9 @@ const myTabNavigation = async () => {
   const mapIcon = await Icon.getImageSource('md-map', 30);
   const shareIcon = await Icon.getImageSource('md-share-alt', 30);
   const iconMenu = await Icon.getImageSource('ios-menu', 30);
-
+  const constants = await Navigation.constants();
+  const topBarHeight = constants.topBarHeight;
+  console.log({ constants });
   const menuToggle = {
     leftButtons: [
       {

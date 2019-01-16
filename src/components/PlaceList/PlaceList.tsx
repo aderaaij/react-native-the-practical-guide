@@ -9,12 +9,14 @@ const PlaceListContainer = styled(FlatList)`
 
 interface PlaceObject {
   name: string;
-  image: object;
+  image: {
+    uri: string;
+  };
   key: number;
 }
 interface PlaceListProps {
   places: Array<PlaceObject>;
-  onItemSelected: (arg: number) => string;
+  onItemSelected: (arg: number) => void;
 }
 
 const PlaceList: React.SFC<PlaceListProps> = ({ places, onItemSelected }) => {

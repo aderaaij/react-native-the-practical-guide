@@ -3,6 +3,11 @@ import { Button, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import PlaceList from '../../components/PlaceList/PlaceList';
+export interface FindPlaceScreenProps {
+  componentId: string;
+  places: Array<Place>;
+  isDrawerOpen: boolean;
+}
 
 type Place = {
   key: number;
@@ -12,12 +17,18 @@ type Place = {
   };
 };
 
-class FindPlaceScreen extends React.Component {
-  constructor(props: any) {
+class FindPlaceScreen extends React.Component<FindPlaceScreenProps> {
+  constructor(props: FindPlaceScreenProps) {
     super(props);
     Navigation.events().bindComponent(this);
   }
+  async componentDidMount() {
+    const constants = await Navigation.constants();
+    const topBarHeight = constants.topBarHeight;
+    console.log({ constants });
+  }
   itemSelectedHandler = (key: number) => {
+    const currentPlace = this.props.places.find((item: Place) => item.key === key);
     Navigation.push(this.props.componentId, {
       component: {
         name: 'awesome-places.PlaceDetailScreen',
@@ -27,7 +38,7 @@ class FindPlaceScreen extends React.Component {
         options: {
           topBar: {
             title: {
-              text: this.props.places.find((item: Place) => item.key === key).name
+              text: currentPlace && currentPlace.name ? currentPlace.name : ''
             }
           }
         }
@@ -54,7 +65,7 @@ class FindPlaceScreen extends React.Component {
   }
 }
 
-const mapStateToProps = ({ places, ui }) => {
+const mapStateToProps = ({ places, ui }: { places: any; ui: { isDrawerOpen: boolean } }) => {
   return {
     places: places.places,
     isDrawerOpen: ui.isDrawerOpen
