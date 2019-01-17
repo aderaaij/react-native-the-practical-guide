@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface ButtonWithBgProps {
   title: string;
-  onPress: () => void;
+  onPress: () => () => void;
   style: {
     backgroundColor: string;
   };
