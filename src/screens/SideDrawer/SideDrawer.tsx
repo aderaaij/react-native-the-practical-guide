@@ -56,16 +56,20 @@ class SideDrawer extends React.Component<SideDrawerProps, any> {
     statusBarHeight: 0
   };
   async componentDidMount() {
+    console.log('side drawer mounted');
     const constants = await Navigation.constants();
     const statusBarHeight = constants.statusBarHeight;
     this.setState({
       statusBarHeight: statusBarHeight
     });
+    Navigation.events().bindComponent(this);
   }
-  componentDidAppear() {
+  notifyComponentDidAppear() {
+    console.log('Component did appear');
     this.props.onDrawerToggle(true);
   }
   componentDidDisappear() {
+    console.log('Component did disappear');
     this.props.onDrawerToggle(false);
   }
   public render() {
